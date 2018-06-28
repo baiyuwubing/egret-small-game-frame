@@ -1,0 +1,54 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,effect_coin_json,effect_coin_png,preloading_jpg,bg_mp3,v_down_mp3",
+			"name": "preload"
+		},
+		{
+			"keys": "img_loading_di_png,img_loading_top_png",
+			"name": "loading"
+		}
+	],
+	"resources": [
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/effect/effect_coin.json",
+			"type": "json",
+			"name": "effect_coin_json"
+		},
+		{
+			"url": "assets/effect/effect_coin.png",
+			"type": "image",
+			"name": "effect_coin_png"
+		},
+		{
+			"url": "assets/preloading.jpg",
+			"type": "image",
+			"name": "preloading_jpg"
+		},
+		{
+			"url": "assets/load/img_loading_di.png",
+			"type": "image",
+			"name": "img_loading_di_png"
+		},
+		{
+			"url": "assets/load/img_loading_top.png",
+			"type": "image",
+			"name": "img_loading_top_png"
+		},
+		{
+			"url": "assets/sound/bg.mp3",
+			"type": "sound",
+			"name": "bg_mp3"
+		},
+		{
+			"name": "v_down_mp3",
+			"type": "sound",
+			"url": "assets/sound/v_down.mp3"
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"styles": {
+		"1": {
+			"textColor": "0xffffff",
+			"textAlign": "center",
+			"size": "22"
+		}
+	},
+	"skins": {
+		"eui.Button": "resource/eui_skins/ButtonSkin.exml",
+		"BaseView": "resource/eui_skins/BaseViewSkin.exml",
+		"MainView": "resource/eui_skins/MainViewSkin.exml",
+		"GameView": "resource/eui_skins/GameViewSkin.exml"
+	},
+	"autoGenerateExmlsList": true,
+	"exmls": [
+		"resource/eui_skins/BaseViewSkin.exml",
+		"resource/eui_skins/ButtonSkin.exml",
+		"resource/eui_skins/GameViewSkin.exml",
+		"resource/eui_skins/LoadingUISkin.exml",
+		"resource/eui_skins/MainViewSkin.exml"
+	],
+	"path": "resource/default.thm.json"
+}

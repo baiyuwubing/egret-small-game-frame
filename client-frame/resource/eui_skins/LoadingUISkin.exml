@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoadingUISkin" width="750" height="1336" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+        <e:Group y="1000" horizontalCenter="0">
+                <e:Image x="0" y="0" source="img_loading_di_png" />
+                <e:Image id="img_progress" x="0" bottom="0" source="img_loading_top_png" />
+        </e:Group>
+        <e:Label id="lb_version" text="" right="5" bottom="5" />
+</e:Skin>
