@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MainViewSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui"
-        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*"></e:Skin>
+<e:Skin class="MainViewSkin" width="750" height="1336" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+        <e:Group id="layer_base" width="100%" height="100%" touchEnabled="false" />
+</e:Skin>
