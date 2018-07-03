@@ -104,6 +104,7 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected createGameScene(): void {
+        RandomMgr.ins().init()
         SoundMgr.ins().init()
         this.mainView = new MainView()
         this.addChild(this.mainView)

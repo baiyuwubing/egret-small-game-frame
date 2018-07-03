@@ -24,6 +24,7 @@
 		"bin-debug/game/mgr/EffectMgr.js",
 		"bin-debug/game/mgr/GameMgr.js",
 		"bin-debug/game/mgr/LocalStorageMgr.js",
+		"bin-debug/game/mgr/RandomMgr.js",
 		"bin-debug/game/mgr/SoundMgr.js",
 		"bin-debug/game/model/GameModel.js",
 		"bin-debug/game/view/GameView.js"

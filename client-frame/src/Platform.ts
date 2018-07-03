@@ -8,13 +8,17 @@ declare interface Platform {
 
     getUserInfo(): Promise<any>;
 
-    login(): Promise<any>
+    login(): Promise<any>;
 
 }
 
 class DebugPlatform implements Platform {
     async getUserInfo() {
-        return { nickName: "username" }
+        return new Promise((resolve, reject) => {
+            GameConst.randomSeed = Math.round(1000 + Math.random() * 8999).toString()
+            resolve()
+        })
+
     }
     async login() {
 
