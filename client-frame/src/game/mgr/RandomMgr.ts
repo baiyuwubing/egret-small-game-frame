@@ -47,6 +47,28 @@ class RandomMgr extends SingletonClass {
 		return ret
 	}
 
+	public randomNumArray(min: number, max: number, count: number, randomSeedType: RandomSeedType = RandomSeedType.UNDEFINE): number[] {
+		if (min > max)
+			max = min
+		const ret = []
+		if (max - min + 1 < count) {
+			count = max - min + 1
+		}
+		for (let i = 0; i < count;) {
+			const ramdomNum = this.randomNum(min, max, randomSeedType)
+			if (ret.indexOf(ramdomNum) < 0) {
+				ret.push(ramdomNum)
+				i++;
+			}
+		}
+		return ret
+	}
 
+	/**百分比概率 */
+	public getPercentProbability(percent: number, randomSeedType: RandomSeedType = RandomSeedType.UNDEFINE): boolean {
+		const ramdomNum = this.randomNum(1, 100, randomSeedType)
+		// egret.log("getPercentProbability", percent, ramdomNum)
+		return (percent >= ramdomNum)
+	}
 
 }
