@@ -37,8 +37,8 @@
 			"name": "promise"
 		},
 		{
-			"name": "physics",
-			"path": "../libsrc/physics"
+			"name": "particle",
+			"path": "libs/particle"
 		}
 	]
 }

@@ -4,15 +4,13 @@ class GameMgr extends SingletonClass {
 	}
 
 	private _gameView: GameView
-	private _mainView: MainView;
 
 	public static ins() {
 		return super.ins() as GameMgr
 	}
 
 	public init() {
-		this._mainView = Main.ins.mainView
-		this._gameView = this._mainView.getView(GameView) as GameView;
+		this._gameView = ViewMgr.ins().getView(GameView) as GameView;
 
 		this.resetGame()
 		egret.startTick(this.enterFrame, this)
@@ -29,7 +27,7 @@ class GameMgr extends SingletonClass {
 
 	/** 每帧刷新 */
 	private enterFrame(evt: number): boolean {
-
+		this._gameView.update()
 		return
 	}
 

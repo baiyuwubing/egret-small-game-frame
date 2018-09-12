@@ -73,6 +73,19 @@ class Main extends eui.UILayer {
 
     private async loadResource() {
         try {
+            await new Promise((resolve, reject) => {
+                const request = new egret.HttpRequest();
+                request.open('resource/default.res.json?v=' + Math.random(), egret.HttpMethod.GET)
+                request.send();
+                request.addEventListener(egret.Event.COMPLETE, (event: egret.Event) => {
+                    const request = <egret.HttpRequest>event.currentTarget;
+                    resolve()
+                }, this);
+                request.addEventListener(egret.IOErrorEvent.IO_ERROR, () => {
+                    reject('IO_ERROR')
+                }, this);
+            })
+
             await RES.loadConfig("resource/default.res.json", "resource/");
             await RES.loadGroup("loading", 0);
             await this.loadTheme();

@@ -45,3 +45,9 @@ class MainView extends eui.Component implements eui.UIComponent {
 	}
 
 }
+
+module ViewMgr {
+	export function ins() {
+		return Main.ins.mainView;
+	}
+}
