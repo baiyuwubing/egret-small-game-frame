@@ -18,7 +18,7 @@ class MainView extends eui.Component implements eui.UIComponent {
 		super.childrenCreated();
 		this.percentWidth = this.percentHeight = 100
 
-		const _view_config = [
+		const _view_config: { view: any, show: boolean, parent: egret.DisplayObjectContainer }[] = [
 			{ view: GameView, show: true, parent: this.layer_base },
 		]
 

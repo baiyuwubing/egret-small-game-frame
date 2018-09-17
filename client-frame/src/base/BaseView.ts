@@ -3,7 +3,7 @@ class BaseView extends eui.Component implements eui.UIComponent {
 	/**是否要黑底 */
 	protected _needBlackBg = true
 	/**是否显示效果 */
-	protected _needShowEffect = true
+	protected _needShowEffect = 1
 	private _bgShape: egret.Shape
 	private _parent: egret.DisplayObjectContainer
 
@@ -51,22 +51,38 @@ class BaseView extends eui.Component implements eui.UIComponent {
 		if (parent) {
 			parent.addChild(this)
 			egret.Tween.removeTweens(this)
-			if (this._needShowEffect) {
-				this.alpha = 0.2
-				this.scaleX = this.scaleY = 0.9
-				egret.Tween.get(this).to({ alpha: 1 })
-				egret.Tween.get(this).to({ scaleX: 1, scaleY: 1 }, 500, egret.Ease.backInOut)
+			switch (this._needShowEffect) {
+				case 2: {
+					this.alpha = 0
+					this.scaleX = this.scaleY = 1.15
+					egret.Tween.get(this)
+						.to({ alpha: 1 }, 140)
+						.to({ scaleX: 0.96, scaleY: 0.96 }, 200)
+						.to({ scaleX: 1.0, scaleY: 1.0 }, 100)
+						.call(() => { });
+					break;
+				}
+				case 1: {
+					egret.Tween.get(this)
+						.to({ scaleX: 0.8, scaleY: 0.8, alpha: 0 })
+						.to({ scaleX: 1.0, scaleY: 1.0, alpha: 1 }, 300)
+						.call(() => { });
+					break;
+				}
 			}
 		}
 	}
 
 	public hide(...params: any[]) {
 		egret.Tween.removeTweens(this)
-		egret.Tween.get(this).to({ alpha: 0, scaleX: 0.8, scaleY: 0.8 }, 500).call(() => {
-			this.visible = false
-			this._parent = this.parent
-			func.removeFromParent(this)
-		})
+		egret.Tween.get(this)
+			.to({ scaleX: 1, scaleY: 1, alpha: 1 })
+			.to({ scaleX: 0.8, scaleY: 0.8, alpha: 0 }, 300)
+			.call(() => {
+				this.visible = false
+				this._parent = this.parent
+				func.removeFromParent(this)
+			});
 	}
 
 	public addTouchTapEvent(obj: egret.DisplayObject, callback: Function, useCapture?: boolean, priority?: number) {
