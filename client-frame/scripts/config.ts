@@ -2,7 +2,7 @@
 ///<reference path="api.d.ts"/>
 
 import * as path from 'path';
-import { UglifyPlugin, IncrementCompilePlugin, CompilePlugin, ManifestPlugin, ExmlPlugin, EmitResConfigFilePlugin, TextureMergerPlugin } from 'built-in';
+import { UglifyPlugin, IncrementCompilePlugin, CompilePlugin, ManifestPlugin, ExmlPlugin, EmitResConfigFilePlugin, TextureMergerPlugin, RenamePlugin } from 'built-in';
 import { WxgamePlugin } from './wxgame/wxgame';
 import { BricksPlugin } from './bricks/bricks';
 import { CustomPlugin } from './myplugin';
@@ -42,7 +42,33 @@ const config: ResourceManagerConfig = {
                         sources: ["main.js"],
                         target: "main.min.js"
                     }]),
-                    new ManifestPlugin({ output: "manifest.json", hash: "crc32" })
+
+                    new RenamePlugin({
+                        verbose: true, hash: 'crc32', matchers: [
+                            { from: "**/*.js", to: "[path][name]_[hash].[ext]" },
+                            { from: "resource/assets/load/**", to: "[path][name]_[hash].[ext]" },
+                            { from: "resource/assets/sound/**", to: "[path][name]_[hash].[ext]" },
+                            { from: "resource/assets/effect/**", to: "[path][name]_[hash].[ext]" }
+                        ]
+                    }),
+                    // new TextureMergerPlugin({ textureMergerRoot: ["resource/assets/load"] })
+                    new EmitResConfigFilePlugin({
+                        output: 'resource/default.res.json',
+                        typeSelector: config.typeSelector,
+                        nameSelector: (path) => {
+                            const basename = path.substr(path.lastIndexOf("/") + 1);
+                            const ext = path.substr(path.lastIndexOf(".") + 1);
+                            return basename.replace(".", "_")
+                        },
+                        groupSelector: (path) => {
+                            if (path.indexOf("assets/load/") >= 0) {
+                                return "loading"
+                            } else {
+                                return "preload";
+                            }
+                        }
+                    }),
+                    new ManifestPlugin({ output: "manifest.json" })
                 ]
             }
         }
