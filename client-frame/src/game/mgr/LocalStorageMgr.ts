@@ -12,14 +12,14 @@ class LocalStorageMgr extends SingletonClass {
 	public static readonly KEY_BEST_SCORE = `KEY_BEST_SCORE`
 
 
-	private game_key = 'game_name_'
+	private _game_key = 'game_name_'
 
 	public setLocal(key: string, value) {
-		egret.localStorage.setItem(this.str_encrypt(this.game_key + key), this.str_encrypt(value))
+		egret.localStorage.setItem(this.str_encrypt(this._game_key + key), this.str_encrypt(value))
 	}
 
 	public getLocal(key: string, defalut?) {
-		let result = egret.localStorage.getItem(this.str_encrypt(this.game_key + key))
+		let result = egret.localStorage.getItem(this.str_encrypt(this._game_key + key))
 		if (result == null) {
 			return defalut
 		}
@@ -64,6 +64,4 @@ class LocalStorageMgr extends SingletonClass {
 		}
 		return c;
 	}
-
-
 }

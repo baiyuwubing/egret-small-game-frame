@@ -2,14 +2,10 @@ class SoundMgr extends SingletonClass {
 	public constructor() {
 		super()
 	}
-	private _isPlayMusic = false
-
-
 	public static readonly RES_V_DOWN = 'v_down_mp3';
-
 	public static readonly RES_BG = "bg_mp3";
 
-
+	private _isPlayMusic = false
 	private _musicVolume: number = 1
 	private _soundVolume: number = 1
 
@@ -42,15 +38,6 @@ class SoundMgr extends SingletonClass {
 
 	public init() {
 		this._soundReses = {}
-		// for (const key of
-		// 	[
-		// 		SoundMgr.RES_MOVE_LEFT, SoundMgr.RES_MOVE_RIGHT,
-		// 		SoundMgr.RES_V_DOWN, SoundMgr.RES_ELIMINATE, SoundMgr.RES_TRANSFORMATION,
-		// 		SoundMgr.RES_COUNT_DOWN, SoundMgr.RES_DIRECTLY_DOWN,
-		// 		SoundMgr.RES_TIME_TIPS
-		// 	]) {
-		// 	this._soundReses[key] = RES.getRes(key) as egret.Sound;
-		// }
 
 		const sound = RES.getRes(SoundMgr.RES_BG) as egret.Sound
 		if (sound && sound[`play`]) {
@@ -76,7 +63,6 @@ class SoundMgr extends SingletonClass {
 			const chanel = sound.play(0, 1)
 			chanel.volume = this._soundVolume
 		}
-
 	}
 
 	public playBg(bool = true) {
@@ -93,6 +79,22 @@ class SoundMgr extends SingletonClass {
 		if (sound && sound[`play`]) {
 			this._bgChannel = sound.play()
 			this._bgChannel.volume = this._isPlayMusic ? this._musicVolume : 0
+		}
+	}
+
+	public audioContextResume() {
+		if (
+			egret['web'] && egret['web']['Html5Capatibility']
+			&& egret['web']['WebAudioDecode']
+			&& egret['web']['Html5Capatibility']
+			&& egret['web']['AudioType']
+			&& egret['web']['Html5Capatibility']._audioType == egret['web']['AudioType'].WEB_AUDIO
+		) {
+			const audioCtx = egret['web']['WebAudioDecode'].ctx
+			if (audioCtx && (audioCtx.state == 'suspended' || audioCtx.state == "interrupted")) {
+				audioCtx.resume()
+				console.log('audioCtx.resume()!')
+			}
 		}
 	}
 
